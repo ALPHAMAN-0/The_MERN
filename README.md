@@ -4,6 +4,21 @@ A production-ready, full-stack boilerplate built with **MongoDB**, **Express**, 
 
 ---
 
+## 📷 Architecture Diagram
+
+The project architecture is shown below. To display the diagram in this README, add the image file at `MERN_Boilerplate/docs/architecture.png` and it will render automatically on GitHub.
+
+![Architecture diagram](docs/architecture.png)
+
+If you have the diagram as a local file (for example from the project attachments), move or copy it into `MERN_Boilerplate/docs/architecture.png`:
+
+```bash
+# from the directory containing your image file
+mkdir -p MERN_Boilerplate/docs
+cp path/to/your/diagram.png MERN_Boilerplate/docs/architecture.png
+```
+
+
 ## 📋 Table of Contents
 
 - [Tech Stack](#tech-stack)
@@ -266,6 +281,45 @@ docker exec -it mongo mongosh
 ```
 
 ---
+
+### Docker Compose — Run Plan
+
+Follow these steps to start the app with Docker Compose locally (detached):
+
+1. Ensure Docker Desktop is running on your machine.
+2. Open a terminal at the project root:
+
+```bash
+cd /Users/siam/Documents/Github/The_MERN/MERN_Boilerplate
+```
+
+3. Build and start all services in detached mode:
+
+```bash
+docker compose up -d --build
+# (alternate older CLI) docker-compose up -d --build
+```
+
+4. Verify containers are running:
+
+```bash
+docker compose ps
+```
+
+5. Tail logs for troubleshooting:
+
+```bash
+docker compose logs -f
+```
+
+6. Stop and remove containers (and optional volumes):
+
+```bash
+docker compose down
+docker compose down -v  # remove volumes (clears DB)
+```
+
+Note: `docker compose up -d` runs and (if needed) builds images locally — it does not push images to Docker Hub or upload your source code to a remote registry. To push images, tag them (e.g. `yourhubuser/image:tag`) and use `docker push` or `docker compose push`.
 
 ## 🎯 Who Should Use This Boilerplate
 
