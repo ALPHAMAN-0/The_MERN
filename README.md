@@ -24,7 +24,7 @@ A production-ready, full-stack boilerplate built with **MongoDB**, **Express**, 
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18, Vite, React Router DOM, Axios |
+| Frontend | React 19, Vite, React Router DOM, Axios |
 | Backend | Node.js, Express.js |
 | Database | MongoDB, Mongoose ODM |
 | Auth | JWT (httpOnly cookies), bcryptjs |
@@ -157,8 +157,10 @@ NODE_ENV=development
 ### `client/.env`
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:5050/api
 ```
+
+> **Note for macOS users:** the server is published on host port **5050** (mapped to container port 5000) because macOS reserves port 5000 for AirPlay Receiver. If you turn off AirPlay Receiver, you can change this back to 5000 in both `docker-compose.yml` and `client/.env`.
 
 > **Note:** Never commit `.env` files to version control. Add them to `.gitignore`.
 
@@ -188,7 +190,7 @@ VITE_API_URL=http://localhost:5000/api
 
 ## 🔌 API Endpoints
 
-Base URL: `http://localhost:5000/api`
+Base URL: `http://localhost:5050/api`
 
 | Method | Endpoint | Access | Description |
 |---|---|---|---|
@@ -200,7 +202,7 @@ Base URL: `http://localhost:5000/api`
 ### Example: Register
 
 ```bash
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST http://localhost:5050/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name": "Alice", "email": "alice@example.com", "password": "secret123"}'
 ```
@@ -208,7 +210,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 ### Example: Login
 
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST http://localhost:5050/api/auth/login \
   -H "Content-Type: application/json" \
   -c cookies.txt \
   -d '{"email": "alice@example.com", "password": "secret123"}'
@@ -247,7 +249,7 @@ The `docker-compose.yml` defines three services:
 | Service | Image | Port | Description |
 |---|---|---|---|
 | `mongo` | mongo:7 | 27017 | MongoDB database with persistent volume |
-| `server` | Custom (Node 20) | 5000 | Express API server |
+| `server` | Custom (Node 20) | 5050 → 5000 | Express API server (host 5050 → container 5000) |
 | `client` | Custom (Node 20) | 5173 | React + Vite frontend |
 
 Data is stored in a named Docker volume (`mongo_data`) so your database persists across container restarts.
