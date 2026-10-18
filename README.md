@@ -5,12 +5,16 @@ A production-ready, full-stack boilerplate built with **MongoDB**, **Express**, 
 ## Architecture / How it Works
 
 ```mermaid
-flowchart LR
-    A[User] --> B[The Mern]
-    B --> C{Logic}
-    C --> D[(Data)]
-    C --> E[Output]
-    D --> C
+flowchart TD
+  Client --> Server
+  Server --> Config
+  Server --> Routes
+  Routes --> Middleware
+  Middleware --> Controllers
+  Controllers --> Models
+  Controllers --> Utils
+  Config --> Database
+  Models --> Database
 ```
 
 
