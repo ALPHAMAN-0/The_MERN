@@ -2,6 +2,18 @@
 
 A production-ready, full-stack boilerplate built with **MongoDB**, **Express**, **React (Vite)**, and **Node.js** — featuring JWT authentication, Docker support, ESLint + Prettier, and a clean monorepo structure.
 
+## Architecture / How it Works
+
+```mermaid
+flowchart LR
+    A[User] --> B[The Mern]
+    B --> C{Logic}
+    C --> D[(Data)]
+    C --> E[Output]
+    D --> C
+```
+
+
 ---
 
 ## 📷 Architecture Diagram
